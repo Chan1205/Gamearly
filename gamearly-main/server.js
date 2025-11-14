@@ -2,20 +2,21 @@ import express from "express";
 import cors from "cors";
 import dotenv from "dotenv";
 import OpenAI from "openai";
-import { fileURLToPath } from 'url';
-import { dirname, join } from 'path';
-import fs from 'fs';
+import { fileURLToPath } from "url";
+import { dirname, join } from "path";
+import fs from "fs";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
+// Load .env
 dotenv.config({ path: join(__dirname, '.env') });
 
 const app = express();
 app.use(cors());
 app.use(express.json());
 
-const DB_FILE = join(__dirname, 'userInfoDB.txt');
+const DB_FILE = join(__dirname, "userInfoDB.txt");
 
 // Helper function to sanitize user input
 function sanitize(value) {
@@ -40,12 +41,12 @@ const openai = new OpenAI({
   apiKey: process.env.OPENAI_API_KEY,
 });
 
-// ✅ Optional: Add a homepage so you don’t see “Cannot GET /”
+// ✅ Homepage
 app.get("/", (req, res) => {
   res.send("✅ AI Chat Server is running!");
 });
 
-// ✅ Chat endpoint
+// ✅ Chat endpoint for AI
 app.post("/chat", async (req, res) => {
   try {
     const { message } = req.body;

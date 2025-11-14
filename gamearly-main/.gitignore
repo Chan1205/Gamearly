@@ -1,0 +1,20 @@
+# Dependencies
+node_modules/
+
+# Environment variables (IMPORTANT - don't upload API keys!)
+.env
+
+# User database (optional - you may want to exclude this for privacy)
+userInfoDB.txt
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# IDE files
+.vscode/
+.idea/
+
+# Logs
+*.log
+npm-debug.log*
