@@ -3,7 +3,11 @@ import cors from "cors";
 import dotenv from "dotenv";
 import OpenAI from "openai";
 
+// Load .env variables
 dotenv.config();
+
+// Now variables are available:
+const apiKey = process.env.OPENAI_API_KEY;
 
 const app = express();
 app.use(cors());
@@ -13,12 +17,12 @@ const openai = new OpenAI({
   apiKey: process.env.OPENAI_API_KEY,
 });
 
-// ✅ Optional: Add a homepage so you don’t see “Cannot GET /”
+// Optional homepage
 app.get("/", (req, res) => {
   res.send("✅ AI Chat Server is running!");
 });
 
-// ✅ Chat endpoint
+// Chat endpoint
 app.post("/chat", async (req, res) => {
   try {
     const { message } = req.body;
@@ -30,9 +34,11 @@ app.post("/chat", async (req, res) => {
 
     res.json({ reply: response.choices[0].message.content });
   } catch (error) {
-    console.error(error);
+    console.error("❌ Error:", error);
     res.status(500).json({ error: "Something went wrong" });
   }
 });
 
-app.listen(3000, () => console.log("✅ Server running on http://localhost:3000"));
+app.listen(3000, () =>
+  console.log("✅ Server running on http://localhost:3000")
+);
