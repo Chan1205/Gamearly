@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Gamearly - Log In</title>
+  <link rel="stylesheet" href="styles.css">
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div class="auth-device">
+    <div class="auth-page">
+      <h1 class="logo">Gamearly</h1>
+      <div class="auth-container">
+        <div class="auth-content">
+      <h2>Log In</h2>
+      <p><a href="admin-login.html" class="auth-link">I'm an Admin</a></p>
+
+      <div class="auth-input-group">
+        <input type="text" id="username" placeholder="Username" required />
+        <input type="password" id="password" placeholder="Password" required />
+      </div>
+
+      <p id="error-msg" class="auth-error" style="display: none;">
+        * Both fields must be filled
+      </p>
+
+      <a href="reset.html" class="forgot-link">Forgot My Password</a>
+
+  <button onclick="validateLogin()">Go</button>
+
+      <p class="signup-text">
+        Don't have an account? <a href="create.html">Create one</a>
+      </p>
+      </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    async function validateLogin() {
+      const username = document.getElementById('username').value.trim();
+      const password = document.getElementById('password').value.trim();
+      const errorMsg = document.getElementById('error-msg');
+
+      if (!username || !password) {
+        errorMsg.textContent = '* Both fields must be filled';
+        errorMsg.style.display = 'block';
+        return;
+      }
+
+      try {
+        const resp = await fetch('http://localhost:3000/login', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ username, password })
+        });
+        const data = await resp.json();
+        if (!data.ok) {
+          errorMsg.textContent = '* ' + (data.error || 'Login failed');
+          errorMsg.style.display = 'block';
+          return;
+        }
+        errorMsg.style.display = 'none';
+        // Successful login -> proceed to gamearly home
+        window.location.href = 'index.html';
+      } catch (e) {
+        errorMsg.textContent = '* Could not reach server. Is save_server.js running?';
+        errorMsg.style.display = 'block';
+      }
+    }
+  </script>
+</body>
+</html>

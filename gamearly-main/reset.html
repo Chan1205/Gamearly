@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Reset Password - Gamearly</title>
+  <link rel="stylesheet" href="styles.css">
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div class="auth-device reset-theme">
+    <div class="auth-page">
+      <h1 class="logo">Gamearly</h1>
+      <div class="auth-container">
+        <div class="auth-content">
+          <h2>Reset Password</h2>
+
+          <form id="resetForm">
+            <input type="email" id="email" placeholder="Email Address" required />
+            <input type="text" id="username" placeholder="Username" required />
+            <input type="password" id="newPassword" placeholder="New Password" required />
+            <input type="password" id="confirmPassword" placeholder="Confirm Password" required />
+
+            <div class="error-text" id="errorMessage">
+              <span class="red-star">*</span> Passwords must match
+            </div>
+
+            <button type="submit">Send Email</button>
+          </form>
+
+          <p class="note">
+            We will send you a confirmation email<br>
+            Click “Confirm” on the email to reset the password.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const form = document.getElementById('resetForm');
+    const emailInput = document.getElementById('email');
+    const usernameInput = document.getElementById('username');
+    const newPassword = document.getElementById('newPassword');
+    const confirmPassword = document.getElementById('confirmPassword');
+    const errorMessage = document.getElementById('errorMessage');
+
+    form.addEventListener('submit', async (event) => {
+      event.preventDefault();
+
+      const email = emailInput.value.trim();
+      const username = usernameInput.value.trim();
+      const newPw = newPassword.value;
+      const confirmPw = confirmPassword.value;
+
+      // Validate all fields filled
+      if (!email || !username || !newPw || !confirmPw) {
+        errorMessage.innerHTML = '<span class="red-star">*</span> All fields must be filled';
+        errorMessage.style.visibility = 'visible';
+        return;
+      }
+
+      // Validate passwords match
+      if (newPw !== confirmPw) {
+        errorMessage.innerHTML = '<span class="red-star">*</span> Passwords must match';
+        errorMessage.style.visibility = 'visible';
+        confirmPassword.style.borderColor = '#ff4c4c';
+        return;
+      }
+
+      errorMessage.style.visibility = 'hidden';
+      confirmPassword.style.borderColor = '';
+
+      // Send reset request to server
+      try {
+        const resp = await fetch('http://localhost:3000/reset-password', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ email, username, newPassword: newPw })
+        });
+        const data = await resp.json();
+
+        if (!data.ok) {
+          errorMessage.innerHTML = '<span class="red-star">*</span> ' + (data.error || 'Reset failed');
+          errorMessage.style.visibility = 'visible';
+          return;
+        }
+
+        // Success - redirect to confirmation
+        window.location.href = 'emailConfirmation.html';
+      } catch (e) {
+        errorMessage.innerHTML = '<span class="red-star">*</span> Could not reach server';
+        errorMessage.style.visibility = 'visible';
+      }
+    });
+  </script>
+</body>
+</html>

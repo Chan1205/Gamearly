@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Create Account - Gamearly</title>
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="device">
+    <div class="page">
+      <h1 class="logo">Gamearly</h1>
+      <div class="container">
+        <div class="content">
+      <h2>Create an Account</h2>
+
+      <input type="email" id="email" placeholder="Email Address" />
+      <input type="text" id="username" placeholder="Username" />
+      <input type="password" id="password" placeholder="New Password" />
+      <input type="password" id="confirm" placeholder="Confirm Password" />
+      <p class="note" id="error-msg" style="display:none;">*All fields must be filled and passwords must match</p>
+
+      <button onclick="checkPasswords()">Confirm</button>
+      <a href="index.html" class="back-link">Back to Login</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    function checkPasswords() {
+      const email = document.getElementById('email').value.trim();
+      const username = document.getElementById('username').value.trim();
+      const pw = document.getElementById('password').value;
+      const confirm = document.getElementById('confirm').value;
+      const error = document.getElementById('error-msg');
+
+      // Check if all fields are filled
+      if (!email || !username || !pw || !confirm) {
+        error.style.display = 'block';
+        return;
+      }
+
+      // Check if passwords match
+      if (pw !== confirm) {
+        error.style.display = 'block';
+      } else {
+        error.style.display = 'none';
+        window.location.href = 'emailConfirmation.html'; // Redirect to email Confirmation
+      }
+    }
+  </script>
+</body>
+</html>

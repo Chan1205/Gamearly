@@ -1,0 +1,390 @@
+/* ==========================================
+   Shared Styles (Used across multiple files)
+   ========================================== */
+
+/* Global Reset */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* Base Styles - Used in index.html, create.html, reset.html, emailConfirmation.html */
+body {
+  font-family: "Poppins", sans-serif;
+  background-color: #00085c;
+  color: white;
+  min-height: 100vh;
+  text-align: center;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Container - Used in all pages */
+.container {
+  flex: 1;
+  width: 90%;
+  max-width: 400px;
+  margin: -50px auto 0;
+  padding: 0 20px;
+  display: flex;
+  align-items: center;
+}
+
+/* Logo - Top section */
+h1.logo {
+  font-family: "Press Start 2P", cursive;
+  font-size: 28px;
+  color: #a3c6ff;
+  margin: 30px 0;
+  text-align: center;
+}
+
+/* Content - Centered section */
+.content {
+  width: 100%;
+  transform: translateY(-25px);
+}
+
+/* Heading - All pages */
+h2 {
+  font-size: 24px;
+  font-weight: 700;
+  margin-bottom: 30px;
+}
+
+/* ==========================================
+   Link Styles
+   ========================================== */
+
+/* Common Link Styles - All pages */
+a {
+  color: #2ea8ff;
+  text-decoration: none;
+  font-size: 14px;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+/* Admin Link - index.html */
+.admin-link {
+  display: block;
+  margin-bottom: 25px;
+}
+
+/* Forgot Password Link - index.html */
+.forgot-link {
+  display: block;
+  text-align: right;
+  margin-top: -10px;
+  margin-bottom: 25px;
+}
+
+/* Back Link - create.html */
+.back-link {
+  display: block;
+  margin-top: 25px;
+  font-size: 14px;
+}
+
+/* ==========================================
+   Form Elements - Shared across forms
+   ========================================== */
+
+/* Input Group - index.html */
+.input-group {
+  display: flex;
+  flex-direction: column;
+  /* gap: 5px; */
+  margin-bottom: 15px;
+}
+
+/* Input Fields - All */
+input {
+  width: 100%;
+  padding: 12px;
+  border-radius: 6px;
+  border: 1.5px solid #fff;
+  background-color: transparent;
+  color: white;
+  font-size: 16px;
+  margin-bottom: 20px;
+  outline: none;
+}
+
+input::placeholder {
+  color: #4ea0ff;
+}
+
+/* Buttons - All */
+button {
+  background-color: transparent;
+  border: 1.5px solid #fff;
+  color: white;
+  font-size: 16px;
+  padding: 10px 25px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+button:hover {
+  background-color: #2ea8ff;
+  border-color: #2ea8ff;
+}
+
+/* ==========================================
+   Page Specific Styles
+   ========================================== */
+
+/* Sign up text - index.html */
+.signup-text {
+  margin-top: 40px;
+  font-size: 14px;
+}
+
+/* Message Box - emailConfirmation.html */
+.message-box {
+  border: 1.5px solid #fff;
+  border-radius: 6px;
+  padding: 20px;
+  margin-bottom: 40px;
+  font-size: 16px;
+  line-height: 1.6;
+  color: #c8d9ff;
+}
+
+/* Resend Link - emailConfirmation.html */
+.resend {
+  margin-top: 30px;
+  font-size: 14px;
+}
+
+/* Error Messages - create.html, reset.html */
+.note {
+  font-size: 14px;
+  color: #c8d9ff;
+  text-align: left;
+  margin-top: 15px;
+  margin-bottom: 25px;
+}
+
+#error-msg {
+  font-size: 14px;
+  color: #ff6666;
+  text-align: left;
+  margin-top: -15px;
+  margin-bottom: 25px;
+}
+
+/* ==========================================
+   Theme Variations
+   ========================================== */
+
+/* Admin Page Theme */
+.admin-theme {
+  background-color: #CAF0F8;
+  color: #00004d;
+}
+
+/* Ensure the admin themed device page (the .page child) uses the admin background */
+.device.admin-theme .page {
+  background-color: #CAF0F8;
+}
+
+.admin-theme h2.admin-title {
+  font-family: 'Work Sans', sans-serif;
+  font-size: 24px;
+  font-weight: 700;
+  margin-bottom: 30px;
+  color: #03045E;
+}
+
+.admin-theme input {
+  border: 2px solid #00004d;
+  color: #0077b6;
+}
+
+.admin-theme button {
+  border: 2px solid #00004d;
+  color: #00004d;
+  box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.15);
+}
+
+.admin-theme button:hover {
+  background-color: #00004d;
+  color: #c7edf7;
+}
+
+.admin-theme a {
+  color: #0077b6;
+}
+
+/* Placeholder Theme - placeholderHS.html */
+.placeholder-theme {
+  background-color: #00004d;
+  color: #c7edf7;
+}
+
+/* ==========================================
+   Reset Password Page Styles - reset.html
+   ========================================== */
+
+/* Reset Theme - overrides default body styles */
+body.reset-theme {
+  background-color: #00085c;
+  font-family: 'Poppins', sans-serif;
+  color: #c7edf7;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  text-align: center;
+  margin: 0;
+  padding: 0 20px;
+}
+
+
+.reset-theme h2 {
+  font-size: 1.5em;
+  font-weight: 600;
+  color: #c7edf7;
+  margin-bottom: 40px;
+}
+
+.reset-theme form {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  margin: 0;
+  gap: 0; /* inputs already have margin-bottom: 20px from global */
+}
+
+.reset-theme .container {
+  flex: 1;
+  width: 90%;
+  max-width: 400px;
+  margin: 0 auto;
+  padding: 0 20px;
+  display: flex;
+  align-items: center;
+}
+
+/* Reset theme color overrides only; inherit all sizing/layout from global */
+.reset-theme input {
+  border-color: #c7edf7;
+  color: #c7edf7;
+}
+
+.reset-theme input::placeholder {
+  color: #4ea0ff;
+}
+
+.reset-theme input:focus {
+  border-color: #4ea0ff;
+}
+
+.reset-theme .error-text {
+  color: #ff4c4c;
+  font-size: 0.9em;
+  text-align: left;
+  margin-top: -15px;
+  visibility: hidden;
+}
+
+.reset-theme button {
+  color: #c7edf7;
+  border: 1.5px solid #c7edf7;
+  width: 60%;
+  max-width: 200px;
+  margin: 20px auto 0;
+  padding: 10px 20px;
+}
+
+.reset-theme button:hover {
+  background-color: #1aa6cf;
+  color: #00004d;
+}
+
+.reset-theme p.note {
+  margin-top: 30px;
+  font-size: 14px;
+  color: #c7edf7;
+}
+
+.reset-theme .red-star {
+  color: red;
+}
+
+/* Center reset page content inside device (scoped) */
+.device.reset-theme .page {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.reset-theme .container {
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.reset-theme .content {
+  width: 100%;
+  transform: none;
+}
+
+.reset-theme form {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.reset-theme h1.logo {
+  margin: 30px 0;
+}
+
+/* ==========================================
+   Device emulation wrapper (iPhone-ish)
+   Use the .device element to emulate a 393×852 screen
+   ========================================== */
+
+/* Make the page center the device mockup */
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  background-color: #0b1233; /* page background behind device */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* The device frame that emulates the iPhone screen */
+.device {
+  width: 393px;
+  height: 852px;
+  border-radius: 20px;
+  overflow: hidden;
+  background-color: #00085c; /* default inner background */
+  box-shadow: 0 20px 40px rgba(0,0,0,0.5), inset 0 1px 0 rgba(255,255,255,0.02);
+  -webkit-box-shadow: 0 20px 40px rgba(0,0,0,0.5), inset 0 1px 0 rgba(255,255,255,0.02);
+  transform: scale(1);
+}
+
+/* Ensure inner pages use full device area */
+.device > .page {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Responsive fallback: on very small screens, allow scaling */
+@media (max-width: 420px) {
+  .device { transform: scale(0.95); }
+}
