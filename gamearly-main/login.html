@@ -66,7 +66,7 @@
         // Successful login -> proceed to gamearly home
         window.location.href = 'index.html';
       } catch (e) {
-        errorMsg.textContent = '* Could not reach server. Is save_server.js running?';
+        errorMsg.textContent = '* Could not reach server. Make sure to run: node server.js';
         errorMsg.style.display = 'block';
       }
     }

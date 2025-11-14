@@ -355,6 +355,38 @@ function param(name){ return new URLSearchParams(location.search).get(name); }
     return container;
   }
 
+  // Format bot messages with better visual structure
+  function formatBotMessage(text) {
+    // Check if message contains bullet points
+    const hasBulletPoints = text.includes('•') || text.includes('- ') || /^\d+\./m.test(text);
+
+    if (hasBulletPoints) {
+      // Split into intro and list sections
+      let formatted = text;
+
+      // Convert bullet points to styled list items with game emoji
+      formatted = formatted.replace(/•\s*([^\n]+)/g, '<div class="ai-list-item"><span class="game-bullet">🎮</span><span>$1</span></div>');
+      formatted = formatted.replace(/^-\s+([^\n]+)/gm, '<div class="ai-list-item"><span class="game-bullet">🎮</span><span>$1</span></div>');
+      formatted = formatted.replace(/^\d+\.\s+([^\n]+)/gm, '<div class="ai-list-item"><span class="game-bullet">🎮</span><span>$1</span></div>');
+
+      // Highlight game names (text before parentheses or dash)
+      formatted = formatted.replace(/<span>([^(<]+)(\([^)]+\))/g, '<span><strong>$1</strong>$2');
+
+      // Convert line breaks to proper spacing
+      formatted = formatted.replace(/\n\n/g, '<div class="ai-paragraph-break"></div>');
+      formatted = formatted.replace(/\n(?!<div)/g, '<br>');
+
+      return formatted;
+    } else {
+      // Regular text - just add paragraph breaks
+      let formatted = text;
+      formatted = formatted.replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>');
+      formatted = formatted.replace(/\n\n/g, '<div class="ai-paragraph-break"></div>');
+      formatted = formatted.replace(/\n/g, '<br>');
+      return formatted;
+    }
+  }
+
   async function sendMessage() {
     const message = userInput.value.trim();
     if (!message) return;
@@ -405,10 +437,10 @@ function param(name){ return new URLSearchParams(location.search).get(name); }
           chatbox.appendChild(botMsg);
         }
       } else {
-        // Add regular bot response
+        // Add regular bot response with formatted content
         const botMsg = document.createElement("div");
         botMsg.className = "chat-message bot";
-        botMsg.textContent = data.reply;
+        botMsg.innerHTML = formatBotMessage(data.reply);
         chatbox.appendChild(botMsg);
       }
       chatbox.scrollTop = chatbox.scrollHeight;

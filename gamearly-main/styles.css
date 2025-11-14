@@ -177,6 +177,66 @@ fieldset legend{padding:0 6px;font-weight:800}
   pointer-events:none;
 }
 
+/* AI Message Formatting */
+.chat-message.bot strong {
+  color: #03045E;
+  font-weight: 700;
+  font-size: 1.02em;
+}
+
+.chat-message.bot {
+  max-width: 90%;
+}
+
+.ai-list-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  padding: 12px 16px;
+  margin: 8px 0;
+  background: linear-gradient(135deg, rgba(111, 181, 255, 0.12), rgba(204, 242, 255, 0.08));
+  border-left: 3px solid #6FB5FF;
+  border-radius: 10px;
+  font-size: 14px;
+  line-height: 1.65;
+  transition: all 0.25s ease;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+}
+
+.ai-list-item:hover {
+  background: linear-gradient(135deg, rgba(111, 181, 255, 0.18), rgba(204, 242, 255, 0.12));
+  transform: translateX(4px);
+  box-shadow: 0 3px 10px rgba(111, 181, 255, 0.15);
+}
+
+.ai-list-item .game-bullet {
+  font-size: 18px;
+  flex-shrink: 0;
+  line-height: 1;
+  margin-top: 2px;
+}
+
+.ai-list-item span:last-child {
+  flex: 1;
+}
+
+.ai-list-item strong {
+  display: block;
+  margin-bottom: 3px;
+  font-size: 15px;
+}
+
+.ai-paragraph-break {
+  height: 14px;
+}
+
+.chat-message.bot br + br {
+  display: block;
+  content: "";
+  margin-top: 8px;
+}
+
+
 .chat-input-wrapper{
   display:flex;
   gap:10px;
@@ -598,4 +658,60 @@ body:has(.auth-device) {
 /* Responsive auth pages */
 @media (max-width: 420px) {
   .auth-device { transform: scale(0.95); }
+}
+
+/* Filter Page Styles */
+.grid-filters {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+.grid-filters label {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 14px 16px;
+  background: rgba(204, 242, 255, 0.1);
+  border: 2px solid rgba(204, 242, 255, 0.2);
+  border-radius: 12px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  color: var(--ink);
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.grid-filters label:hover {
+  background: rgba(204, 242, 255, 0.15);
+  border-color: rgba(204, 242, 255, 0.4);
+  transform: translateY(-2px);
+}
+
+.grid-filters input[type="checkbox"] {
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
+  accent-color: #6FB5FF;
+  flex-shrink: 0;
+}
+
+.grid-filters label:has(input:checked) {
+  background: rgba(111, 181, 255, 0.2);
+  border-color: #6FB5FF;
+}
+
+.filter-actions {
+  display: flex;
+  gap: 12px;
+  margin-top: 20px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.filter-actions .btn {
+  flex: 1;
+  min-width: 100px;
+  max-width: 150px;
 }

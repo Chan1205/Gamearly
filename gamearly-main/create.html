@@ -64,7 +64,7 @@
         // Success: go to confirmation screen
         window.location.href = 'emailConfirmation.html';
       } catch (e) {
-        error.textContent = '* Could not reach server. Is save_server.js running?';
+        error.textContent = '* Could not reach server. Make sure to run: node server.js';
         error.style.display = 'block';
       }
     }
